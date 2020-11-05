@@ -1,0 +1,40 @@
+.tabs {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  display: grid;
+  grid-template-areas:
+            "search rated"
+            "underline underline"
+}
+.tabs__btn {
+  color: #000;
+}
+
+.search {
+  grid-area: search;
+}
+
+.rated {
+  grid-area: rated;
+}
+
+.underline {
+  width: 100%;
+  background: var(--light-grey);
+  height: 1px;
+  border-radius: 50%;
+  margin-top: .7rem;
+  position: relative;
+  transition: all .3s ease-in;
+  grid-area: underline;
+}
+.underline::before {
+  left: 0;
+  top: -2px;
+  content: '';
+  position: absolute;
+  height: 3px;
+  width: 50%;
+  background: var(--blue-color);
+}

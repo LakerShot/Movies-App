@@ -1,6 +1,5 @@
 .movie {
-  max-height: 250px;
-  min-height: 150px;
+  height: 270px;
   background: var(--wite-color);
   -webkit-box-shadow: 1px 2px 5px 1px #E5E5E5, 1px 2px 5px 1px #E5E5E5; 
   box-shadow: 1px 2px 5px 1px #E5E5E5, 1px 2px 5px 1px #E5E5E5;
@@ -10,6 +9,7 @@
 .image_poster {
   width: 100%;
   height: 100%;
+  cursor: pointer;
 }
 
 .info {
@@ -36,6 +36,19 @@
   padding: 1rem;
   border-radius: 50%;
   border: 2px solid var(--yellow);
+}
+
+.info__raiting_green {
+  border-color: var(--green-color);
+}
+.info__raiting_yellow {
+  border-color: var(--yellow-color);
+}
+.info__raiting_orange {
+  border-color: (--orange-color);
+}
+.info__raiting_red {
+  border-color: (--red-color);
 }
 
 .info__date {

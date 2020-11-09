@@ -16,8 +16,8 @@ const App = () => {
             <Search/>
             <MovieList />
 
-            <Row>
-              <Col span={10} offset={8}>
+            <Row align="middle" justify="center">
+              <Col>
                 <Pagination
                   defaultCurrent={1}
                   total={50}

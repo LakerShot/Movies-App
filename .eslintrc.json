@@ -24,6 +24,10 @@
       "jsx-a11y"
   ],
   "rules": {
+      "max-depth": ["warn", 4],
+      "react/state-in-constructor": ["off"],
+      "no-restricted-syntax": "off",
+      "react/jsx-props-no-spreading": ["off"],
       "semi": [2, "never"],
       "no-param-reassign": "off",
       "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
@@ -33,7 +37,9 @@
         }
       }],
       "jsx-a11y/control-has-associated-label": "off",
-      "react/prop-types": [2, { "ignore": ["children"] }],
-      "import/prefer-default-export": "off"
+      "react/prop-types": "off",
+      "import/prefer-default-export": "off",
+      "ignoreDestructuring": 0,
+      "camelcase": ["error", {"properties": "never", "ignoreDestructuring": true}]
   }
 }

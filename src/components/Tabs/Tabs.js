@@ -4,8 +4,8 @@ import './Tabs.css'
 
 const Tabs = () => {
   return (
-    <Row className="mb1">
-      <Col span={6} offset={9}>
+    <Row align="middle" justify="center mb2">
+      <Col>
         <div className="tabs">
           <Button type="link" className="tabs__btn search">Search</Button>
           <Button type="link" className="tabs__btn rated">Rated</Button>

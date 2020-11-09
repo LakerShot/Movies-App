@@ -15,6 +15,10 @@ body {
   --fs-smal: 12px;
   --line-height-small: 15px;
   --line-height-middle: 22px;
+  --red-color: #E90000;
+  --orange-color: #E97E00;
+  --yellow-color: #E9D100;
+  --green-color: #66E900;
 }
 
 /* .main {
@@ -43,4 +47,11 @@ body {
 
 .p2 {
   padding: 2rem;
+}
+
+.center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 }

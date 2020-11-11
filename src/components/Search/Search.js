@@ -1,19 +1,43 @@
-import React, { useState } from 'react'
+import React, { useCallback, useEffect, useState }  from 'react'
+import { debounce } from 'lodash'
 import { Input } from 'antd'
+import { useMainContext } from '../../context/MainContext'
+import { SEARCH_MOVIE } from '../../utils/keys'
+import { urlType } from '../../utils/constants'
 
-const Search = () => {
-  const [movieTitle, setMovieTitle] = useState()
+const Search = ({ setMovieTitle }) => {
+  const { getMovies, currentPage, setCurrentUrlType } = useMainContext()
+  const [serchStr, setSerchStr] = useState('')
 
-  const handleChange = (e) => {
-    setMovieTitle(e.target.value)
+  const updateQuery = () => {
+    if (serchStr.trim() !== '') {
+      setCurrentUrlType(urlType.searchMovie)
+      setMovieTitle(serchStr)
+      getMovies(SEARCH_MOVIE, serchStr, currentPage)
+    }
   }
+  //  eslint-disable-next-line
+  const delayedQuery = useCallback(debounce(updateQuery, 1000), [serchStr])
+
+  const onChange = e => {
+    setSerchStr(e.target.value)
+  }
+
+  useEffect(() => {
+
+    delayedQuery()
+
+  // Cancel the debounce on useEffect cleanup.
+    return delayedQuery.cancel
+  }, [serchStr, delayedQuery])
+
   return (
     <>
       <Input
         placeholder="Type to search..."
         className="mb2"
-        value={movieTitle}
-        onChange={handleChange}
+        value={serchStr}
+        onChange={onChange}
         style={{fontFamily: 'inherit'}}
       />
     </>

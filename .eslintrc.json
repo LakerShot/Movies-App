@@ -24,6 +24,7 @@
       "jsx-a11y"
   ],
   "rules": {
+      "no-unused-vars": "warn",
       "max-depth": ["warn", 4],
       "react/state-in-constructor": ["off"],
       "no-restricted-syntax": "off",
@@ -40,6 +41,8 @@
       "react/prop-types": "off",
       "import/prefer-default-export": "off",
       "ignoreDestructuring": 0,
-      "camelcase": ["error", {"properties": "never", "ignoreDestructuring": true}]
+      "camelcase": ["error", {"properties": "never", "ignoreDestructuring": true}],
+      "react-hooks/exhaustive-deps": "warn",
+      "react/jsx-boolean-value": [0, { "never": ["personal"] }],
   }
 }

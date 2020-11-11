@@ -1,12 +1,11 @@
 import React, { useEffect } from 'react'
-import { v4 as uuidv4 } from 'uuid'
 import { Alert, Row } from 'antd'
 import { useMainContext } from '../../context/MainContext'
 import Movie from './Movie'
 import Loader from '../Loader/Loader'
 
 const MovieList = () => {
-  const { movies, loading, error, clearError } = useMainContext()
+  const { movies, loading, error, clearError, totalResults } = useMainContext()
   useEffect(() => {
     setTimeout(() => {
       clearError()
@@ -16,13 +15,15 @@ const MovieList = () => {
   return (
     <main className="main mb2">
 
-      {loading && !error && <Loader/>}
+      { loading && !error && <Loader/> }
 
-      {error && <Alert message={error} type="error" showIcon className="mb2"/>}
+      { error && <Alert message={error} type="error" showIcon className="mb2"/> }
+
+      { totalResults === 0 && <Alert message='Invalid input...' type="error" showIcon className="mb2" /> }
 
       <Row gutter={[24, 24]}>
-        {movies.results && movies.results.map(movie => (
-          <Movie {...movie} key={uuidv4()}/>
+        {movies && movies.map(movie => (
+          <Movie {...movie} key={movie.id}/>
         ))}
       </Row>
 

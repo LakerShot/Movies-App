@@ -24,7 +24,7 @@ const Movie = ({ title, overview, poster_path, release_date, vote_average}) => {
     return output
   }
 
-  
+
   const dataConverter = (rawDate = new Date()) => {
     const fullData = new Date(rawDate)
     const year = fullData.getFullYear()
@@ -36,18 +36,15 @@ const Movie = ({ title, overview, poster_path, release_date, vote_average}) => {
 
   const filmRateColor = (rate) => {
     const baseClassName = 'info__raiting'
-    if (rate >= 7){
-      return `${baseClassName}_green`
-    } if (rate >= 5) {
-      return `${baseClassName}_yellow`
-    } if (rate >= 3) {
-      return `${baseClassName}_orange`
-    } return `${baseClassName}_red`
+    if (rate > 7) return `${baseClassName}_green`
+    if (rate > 5) return `${baseClassName}_yellow`
+    if (rate > 3) return `${baseClassName}_orange`
+    return `${baseClassName}_red`
   }
 
-  const formatedStrings = limitStr(overview, 20)
+  const formatedStrings = limitStr(overview, overview.length)
   const formatedDate = dataConverter(release_date)
-  
+
   return (
     <Col span={12}>
       <div className="movie">
@@ -72,7 +69,7 @@ const Movie = ({ title, overview, poster_path, release_date, vote_average}) => {
               </div>
               <div className="info__about">
                 <p className="info__text">
-                  {formatedStrings.join(' ')}
+                  {formatedStrings && formatedStrings.join(' ')}
                 </p>
               </div>
             </div>

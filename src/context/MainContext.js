@@ -16,7 +16,7 @@ export const MainContextWrapp = ({ children }) => {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
 
-  const getMovies = async (url, search = '', CurPage = 1) => {
+  const getMovies = useCallback(async (url, search = '', CurPage = 1) => {
     try {
 
       setLoading(true)
@@ -32,7 +32,7 @@ export const MainContextWrapp = ({ children }) => {
      setError(e.message)
     //  throw e
     }
-  }
+  }, [])
 
   useEffect(() => {
     getMovies(POPULAR_MOVIES)

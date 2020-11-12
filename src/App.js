@@ -9,7 +9,7 @@ import { urlType } from './utils/constants'
 
 const App = () => {
   const { totalResults, movies, currentPage, setCurrentPage, getMovies, currentUrlType } = useMainContext()
-  const [movieTitle, setMovieTitle] = useState('kill')
+  const [movieTitle, setMovieTitle] = useState('')
 
   useEffect(() => {
     if (currentUrlType === urlType.searchMovie) {

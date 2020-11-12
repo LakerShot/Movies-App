@@ -43,6 +43,6 @@
       "ignoreDestructuring": 0,
       "camelcase": ["error", {"properties": "never", "ignoreDestructuring": true}],
       "react-hooks/exhaustive-deps": "warn",
-      "react/jsx-boolean-value": [0, { "never": ["personal"] }],
+      "react/jsx-boolean-value": [0, { "never": ["personal"] }]
   }
 }

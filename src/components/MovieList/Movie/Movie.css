@@ -1,5 +1,7 @@
 .movie {
-  height: 270px;
+  min-height: 280px;
+  max-height: 350px;
+  height: 100%;
   background: var(--wite-color);
   -webkit-box-shadow: 1px 2px 5px 1px #E5E5E5, 1px 2px 5px 1px #E5E5E5; 
   box-shadow: 1px 2px 5px 1px #E5E5E5, 1px 2px 5px 1px #E5E5E5;
@@ -7,10 +9,11 @@
 }
 
 .image_poster {
-  width: 100%;
-  height: 100%;
   cursor: pointer;
-  object-fit: cover;
+  background-size: cover;
+  /* width: 100%;
+  height: 100%; */
+  /* object-fit: cover; */
 }
 
 .info {
@@ -64,8 +67,7 @@
 }
 
 .info__about {
-  max-height: 90px;
-  overflow: hidden;
+
 }
 
 .info__text {
@@ -82,4 +84,23 @@
   border-radius: 2px;
   font-size: var(--fs-smal);
   line-height: var(--line-height-small);
+  pointer-events: none;
 }
+
+.info__rate {
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.info__stars {
+  font-size: 26px;
+}
+
+@media only screen
+    and (device-width : 375px)
+    and (device-height : 812px)
+    and (-webkit-device-pixel-ratio : 3) {
+      .info__about {
+        display: block;
+      }
+     }

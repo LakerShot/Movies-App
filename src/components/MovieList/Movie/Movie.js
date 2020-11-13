@@ -1,12 +1,11 @@
-import { Col, Row, Image, Button, Space } from 'antd'
+import { Col, Row, Image, Button, Space, Rate } from 'antd'
 import React from 'react'
 import imageNotFound from '../../../assets/image-not-found.png'
 import { IMAGE_PREVIEW } from '../../../utils/keys'
-import { monthNames } from '../../../utils/constants'
+import { enumTabs, monthNames } from '../../../utils/constants'
 import './Movie.css'
 
-const Movie = ({ title, overview, poster_path, release_date, vote_average}) => {
-
+const Movie = ({ title, overview, poster_path, release_date, vote_average, tabTitle}) => {
   // const limitStr = (rawString, maxLength, symbol = "...") => {
   //   if (!maxLength) return rawString
   //   return rawString.substr(0, maxLength - symbol.length) + symbol
@@ -20,7 +19,13 @@ const Movie = ({ title, overview, poster_path, release_date, vote_average}) => {
       return acc
     }, [])
     // add '...' in the end of the array
-    output.push(symbol)
+    // output.push(symbol)
+    if (rawString) {
+      output.push(symbol)
+    } else {
+      output.push("Sorry, we couldn't find short description about this movie.")
+    }
+
     return output
   }
 
@@ -42,16 +47,22 @@ const Movie = ({ title, overview, poster_path, release_date, vote_average}) => {
     return `${baseClassName}_red`
   }
 
-  const formatedStrings = limitStr(overview, overview.length)
+  const formatedStrings = limitStr(overview, 30)
   const formatedDate = dataConverter(release_date)
 
   return (
-    <Col span={12}>
+    <Col span={12} xs={24} md={12}>
       <div className="movie">
         <Row>
           <Col span={10}>
-          {/* eslint-disable-next-line */}
-            <Image src={`${IMAGE_PREVIEW}/${poster_path}`} fallback={imageNotFound} className="image_poster" alt="Image poster"/>
+              <Image
+                /* eslint-disable-next-line */
+                src={`${IMAGE_PREVIEW}/${poster_path}`}
+                fallback={imageNotFound}
+                className="image_poster"
+                alt="Image poster"
+                // height="100%"
+              />
           </Col>
           <Col span={14}>
             <div className="info">
@@ -60,7 +71,7 @@ const Movie = ({ title, overview, poster_path, release_date, vote_average}) => {
                 {/* eslint-disable-next-line */}
                 <div className={`info__raiting ${filmRateColor(vote_average)}`}>{vote_average}</div>
               </div>
-              <p className="info__date">{formatedDate}</p>
+              <p className="info__date">{formatedDate} </p>
               <div className="info__topic topic">
                 <Space>
                   <Button size='small' className="topic__btn">Action</Button>
@@ -71,6 +82,19 @@ const Movie = ({ title, overview, poster_path, release_date, vote_average}) => {
                 <p className="info__text">
                   {formatedStrings && formatedStrings.join(' ')}
                 </p>
+              </div>
+              <div className="info__rate">
+
+                <Rate
+                  style={{fontSize: "1.4em"}}
+                  disabled={tabTitle === enumTabs.rated}
+                  count={10}
+                  allowHalf
+                  /* eslint-disable-next-line */
+                  defaultValue={tabTitle === enumTabs.rated ? vote_average : 0}
+                  className="info__stars mb1"
+                />
+
               </div>
             </div>
           </Col>

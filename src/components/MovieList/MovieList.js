@@ -4,7 +4,7 @@ import { useMainContext } from '../../context/MainContext'
 import Movie from './Movie'
 import Loader from '../Loader/Loader'
 
-const MovieList = () => {
+const MovieList = ({ tabTitle }) => {
   const { movies, loading, error, clearError, totalResults } = useMainContext()
   useEffect(() => {
     setTimeout(() => {
@@ -23,7 +23,7 @@ const MovieList = () => {
 
       <Row gutter={[24, 24]}>
         {movies && movies.map(movie => (
-          <Movie {...movie} key={movie.id}/>
+          <Movie {...movie} key={movie.id} tabTitle={tabTitle}/>
         ))}
       </Row>
 

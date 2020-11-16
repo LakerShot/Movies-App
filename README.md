@@ -5,7 +5,7 @@ The way it look's like 👇🏼
 ![](./movie_preview.png)
 
 # Try it 👇
-
+https://movies-app-ruby.vercel.app/
 
 # How to use it ?
  - Open the terminal and run ```npm install``` command to install the project

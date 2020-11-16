@@ -2,13 +2,13 @@ import React, { useCallback, useEffect, useState }  from 'react'
 import { debounce } from 'lodash'
 import { Input } from 'antd'
 import { useMainContext } from '../../context/MainContext'
-import { POPULAR_MOVIES, SEARCH_MOVIE } from '../../utils/keys'
+import { SEARCH_MOVIE } from '../../utils/keys'
 import { urlType } from '../../utils/constants'
 
 const Search = ({ setMovieTitle }) => {
   const { getMovies, setCurrentUrlType } = useMainContext()
   const [serchStr, setSerchStr] = useState('')
-
+ 
   const updateQuery = () => {
     if (serchStr.trim() !== '') {
       setCurrentUrlType(urlType.searchMovie)

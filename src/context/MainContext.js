@@ -20,11 +20,27 @@ export const MainContextWrapp = ({ children }) => {
     try {
 
       setLoading(true)
-      const resp = await fetch(`${url}${search}&page=${CurPage}`)
-      if (!resp.ok) throw new Error('Something went wrong')
-      const { results, total_results, page } = await resp.json()
+      const response = await fetch(`${url}${search}&page=${CurPage}`)
+      if (!response.ok) throw new Error('Something went wrong')
+      const { results, total_results, page } = await response.json()
+      const movieGenre = await fetch('https://api.themoviedb.org/3/genre/movie/list?api_key=2c94c607cc74978cfb9fcf6f2093fd6e&language=en-US')
+      const { genres } = await movieGenre.json()
 
-      setMovies(results)
+      // convert arr of geners id to geners name and merge it wiht result array
+      const formatedMovie = results.reduce((acc, movie) => {
+        const listOfGenresName = []
+        genres.map(genre => {
+          return movie.genre_ids.forEach(genreId => {
+            if (genre.id === genreId) {
+              listOfGenresName.push(genre.name)
+            }
+          })
+        })
+        acc.push({...movie, listOfGenresName})
+        return acc
+      },[])
+
+      setMovies(formatedMovie)
       setTotalResults(total_results)
       setCurrentPage(page)
       setLoading(false)

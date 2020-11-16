@@ -1,15 +1,19 @@
 import { Button, Col, Row } from 'antd'
 import React from 'react'
 import { useMainContext } from '../../context/MainContext'
-import { enumTabs } from '../../utils/constants'
+import { enumTabs, urlType } from '../../utils/constants'
 import './Tabs.css'
-
-const Tabs = ({ tabTitle, setTabTitle }) => {
-  const { setCurrentPage, getMovies } = useMainContext()
+ 
+const Tabs = ({ tabTitle, setTabTitle, setMovieTitle, movieTitle }) => {
+  const { setCurrentPage, setCurrentUrlType } = useMainContext()
 
   const handleTabs = (e) => {
     e.preventDefault()
+    if (!movieTitle) setMovieTitle('')
     const innerBtnText = e.target.innerHTML
+    if (innerBtnText === enumTabs.rated) {
+      setCurrentUrlType(urlType.popularMovie)
+    }
     setCurrentPage(1)
     setTabTitle(innerBtnText)
   }

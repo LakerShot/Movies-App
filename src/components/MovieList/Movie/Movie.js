@@ -5,7 +5,7 @@ import { IMAGE_PREVIEW } from '../../../utils/keys'
 import { enumTabs, monthNames } from '../../../utils/constants'
 import './Movie.css'
 
-const Movie = ({ title, overview, poster_path, release_date, vote_average, tabTitle}) => {
+const Movie = ({ title, overview, poster_path, release_date, vote_average, tabTitle, listOfGenresName}) => {
   // const limitStr = (rawString, maxLength, symbol = "...") => {
   //   if (!maxLength) return rawString
   //   return rawString.substr(0, maxLength - symbol.length) + symbol
@@ -74,8 +74,12 @@ const Movie = ({ title, overview, poster_path, release_date, vote_average, tabTi
               <p className="info__date">{formatedDate} </p>
               <div className="info__topic topic">
                 <Space>
-                  <Button size='small' className="topic__btn">Action</Button>
-                  <Button size='small' className="topic__btn">Drama</Button>
+                  <Row>
+                    {listOfGenresName.map((genreName, idx) => (
+                      /* eslint-disable-next-line */
+                      <Button key={idx} size='small' className="topic__btn">{genreName}</Button>
+                    ))}
+                  </Row>
                 </Space>
               </div>
               <div className="info__about">

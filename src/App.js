@@ -16,11 +16,12 @@ const App = () => {
     // getMovies(Url, SerchByTitle, currentPage)
     if (currentUrlType === urlType.searchMovie) {
       getMovies(SEARCH_MOVIE, movieTitle, currentPage)
-    } else if (enumTabs.rated === tabTitle) {
+    } else if (enumTabs.rated === tabTitle || currentUrlType === urlType.topRatedMovie) {
       getMovies(TOP_RATED, '', currentPage)
     } else {
       getMovies(POPULAR_MOVIES, '', currentPage)
     }
+      // eslint-disable-next-line
   }, [currentPage, tabTitle])
 
   return (
@@ -28,7 +29,12 @@ const App = () => {
       <Row align="middle" justify="center">
         <Col className="container" span={14} xl={14} md={20} xs={24}>
 
-          <Tabs tabTitle={tabTitle} setTabTitle={setTabTitle} setMovieTitle={setMovieTitle}/>
+          <Tabs
+            tabTitle={tabTitle}
+            setTabTitle={setTabTitle}
+            setMovieTitle={setMovieTitle}
+            movieTitle={movieTitle}
+          />
 
           {tabTitle === enumTabs.search && <Search setMovieTitle={setMovieTitle}/>}
 

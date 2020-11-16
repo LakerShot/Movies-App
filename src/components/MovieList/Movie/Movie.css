@@ -59,16 +59,18 @@
   font-size: var(--fs-smal);
   line-height: 22px;
 }
-
+.topic {
+  width: 100%;
+}
 .info__topic {
   margin-bottom: .5rem;
   font-size: var(--line-height-middle);
   line-height: var(--line-height-small);
 }
 
-.info__about {
+/* .info__about {
 
-}
+} */
 
 .info__text {
   font-style: normal;
@@ -85,6 +87,8 @@
   font-size: var(--fs-smal);
   line-height: var(--line-height-small);
   pointer-events: none;
+  margin-left: .3rem;
+  margin-top: .3rem;
 }
 
 .info__rate {

@@ -1,36 +1,67 @@
-import React from 'react'
-import "antd/dist/antd.css"
+import React, { useEffect, useState } from 'react'
 import { Col, Pagination, Row } from 'antd'
-import { MainContextWrapp } from './context/MainContext'
+import { useMainContext } from './context/MainContext'
 import { MovieList, Search, Tabs } from './components'
+import { POPULAR_MOVIES, SEARCH_MOVIE, TOP_RATED } from './utils/keys'
+import { enumTabs, urlType } from './utils/constants'
+import "antd/dist/antd.css"
 import './index.css'
 
 const App = () => {
+  const { totalResults, movies, currentPage, setCurrentPage, getMovies, currentUrlType, loading } = useMainContext()
+  const [movieTitle, setMovieTitle] = useState()
+  const [tabTitle, setTabTitle] = useState(enumTabs.search)
+
+  useEffect(() => {
+    // getMovies(Url, SerchByTitle, currentPage)
+    if (currentUrlType === urlType.searchMovie) {
+      getMovies(SEARCH_MOVIE, movieTitle, currentPage)
+    } else if (enumTabs.rated === tabTitle || currentUrlType === urlType.topRatedMovie) {
+      getMovies(TOP_RATED, '', currentPage)
+    } else {
+      getMovies(POPULAR_MOVIES, '', currentPage)
+    }
+      // eslint-disable-next-line
+  }, [currentPage, tabTitle])
+
   return (
-    <MainContextWrapp>
-      <section className="main">
-        <Row>
-          <Col className="container" span={12} offset={6} >
+    <section className="main">
+      <Row align="middle" justify="center">
+        <Col className="container" span={14} xl={14} md={20} xs={24}>
 
-            <Tabs/>
-            <Search/>
-            <MovieList />
+          <Tabs
+            tabTitle={tabTitle}
+            setTabTitle={setTabTitle}
+            setMovieTitle={setMovieTitle}
+            movieTitle={movieTitle}
+          />
 
-            <Row>
-              <Col span={10} offset={8}>
-                <Pagination
-                  defaultCurrent={1}
-                  total={50}
-                  pageSize={1}
+          {tabTitle === enumTabs.search && <Search setMovieTitle={setMovieTitle}/>}
+
+          <MovieList tabTitle={tabTitle}/>
+
+          <Row align="middle" justify="center">
+            <Col>
+              { totalResults > 0 && <Pagination
+                  simple
+                  responsive
+                  hideOnSinglePage
                   size="small"
+                  current={currentPage}
+                  defaultCurrent={1}
+                  total={totalResults}
+                  defaultPageSize={20}
+                  disabled={loading}
+                  pageSize={movies.length}
+                  onChange={(page) => setCurrentPage(page)}
                 />
-              </Col>
-            </Row>
+              }
+            </Col>
+          </Row>
 
-          </Col>
-        </Row>
-      </section>
-    </MainContextWrapp>
+        </Col>
+      </Row>
+    </section>
   )
 }
 

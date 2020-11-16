@@ -7,15 +7,21 @@
             "search rated"
             "underline underline"
 }
+
+
+
 .tabs__btn {
   color: #000;
+  padding: 0 !important;
+  margin: 0 1rem !important;
+  text-align: center;
 }
 
-.search {
+.tabs__btn__search {
   grid-area: search;
 }
 
-.rated {
+.tabs__btn__rated {
   grid-area: rated;
 }
 
@@ -26,10 +32,10 @@
   border-radius: 50%;
   margin-top: .7rem;
   position: relative;
-  transition: all .3s ease-in;
   grid-area: underline;
 }
 .underline::before {
+  transform: translateX(0);
   left: 0;
   top: -2px;
   content: '';
@@ -38,3 +44,15 @@
   width: 50%;
   background: var(--blue-color);
 }
+
+.tabs_Search .underline::before {
+  transform: translateX(0);
+}
+
+.tabs_Rated .underline::before {
+  transform: translateX(100%);
+}
+/* .ant-btn {
+  padding: 0 !important;
+  margin: 0 1rem !important;
+} */

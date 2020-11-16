@@ -15,6 +15,10 @@ body {
   --fs-smal: 12px;
   --line-height-small: 15px;
   --line-height-middle: 22px;
+  --red-color: #E90000;
+  --orange-color: #E97E00;
+  --yellow-color: #E9D100;
+  --green-color: #66E900;
 }
 
 /* .main {
@@ -44,3 +48,22 @@ body {
 .p2 {
   padding: 2rem;
 }
+
+.center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+@media only screen
+    and (device-width : 375px)
+    and (device-height : 812px)
+    and (-webkit-device-pixel-ratio : 3) {
+      .container {
+        padding: 1rem;
+      }
+      .image_poster {
+        /* width: ;: 50%; */
+      }
+     }
